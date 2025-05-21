@@ -1,0 +1,33 @@
+
+  
+    
+    
+
+    create  table
+      "nyc_parking_violations"."main"."silver_valid_violation_tickets__dbt_tmp"
+  
+    as (
+      SELECT
+    summons_number,
+    issue_date,
+    violation_code,
+    is_manhattan_96th_st_below,
+    issuing_agency,
+    violation_location,
+    violation_precinct,
+    issuer_precinct,
+    issuer_code,
+    issuer_command,
+    issuer_squad,
+    violation_time,
+    violation_county,
+    fee_usd
+FROM
+    "nyc_parking_violations"."main"."silver_violation_tickets"
+WHERE
+    -- violation_precinct != 0 AND
+    EXTRACT(year FROM issue_date) == 2023 AND
+    EXTRACT(month FROM issue_date) <= 8
+    );
+  
+  

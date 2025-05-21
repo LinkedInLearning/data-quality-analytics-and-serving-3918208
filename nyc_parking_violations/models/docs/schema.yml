@@ -1,0 +1,388 @@
+models:
+  - name: bronze_parking_violation_codes
+    description: Raw data representing the violation codes and their fees.
+    columns:
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: definition
+        description: '{{ doc("definition") }}'
+      - name: manhattan_96th_st_below
+        description: '{{ doc("manhattan_96th_st_below") }}'
+      - name: all_other_areas
+        description: '{{ doc("all_other_areas") }}'
+
+  - name: bronze_parking_violations 
+    description: Raw data related to parking violations in 2023, encompassing various details about each violation.
+    columns:
+      - name: summons_number
+        description: '{{ doc("summons_number") }}'
+        tests:
+          - unique
+          - not_null
+          - generic_not_null
+      - name: registration_state
+        description: '{{ doc("registration_state") }}'
+      - name: plate_type
+        description: '{{ doc("plate_type") }}'
+      - name: issue_date
+        description: '{{ doc("issue_date") }}'
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: vehicle_body_type
+        description: '{{ doc("vehicle_body_type") }}'
+      - name: vehicle_make
+        description: '{{ doc("vehicle_make") }}'
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: vehicle_expiration_date
+        description: '{{ doc("vehicle_expiration_date") }}'
+      - name: violation_location
+        description: '{{ doc("violation_location") }}'
+      - name: violation_precinct
+        description: '{{ doc("violation_precinct") }}'
+      - name: issuer_precinct
+        description: '{{ doc("issuer_precinct") }}'
+      - name: issuer_code
+        description: '{{ doc("issuer_code") }}'
+      - name: issuer_command
+        description: '{{ doc("issuer_command") }}'
+      - name: issuer_squad
+        description: '{{ doc("issuer_squad") }}'
+      - name: violation_time
+        description: '{{ doc("violation_time") }}'
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: violation_legal_code
+        description: '{{ doc("violation_legal_code") }}'
+      - name: vehicle_color
+        description: '{{ doc("vehicle_color") }}'
+      - name: vehicle_year
+        description: '{{ doc("vehicle_year") }}'
+
+  - name: silver_parking_violation_codes
+    description: "This model unifies violation codes, providing a comprehensive view of violations, indicating whether they occurred on/below 96th St in Manhattan or in other areas, along with the respective fees in USD."
+    columns:
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: definition
+        description: '{{ doc("definition") }}'
+      - name: is_manhattan_96th_st_below
+        description: '{{ doc("is_manhattan_96th_st_below") }}'
+      - name: fee_usd
+        description: '{{ doc("fee_usd") }}'
+
+  - name: silver_parking_violations
+    description: "Enhanced view of parking violations, enriched with details and specific indicators such as the flag for violations in Manhattan on or below 96th Street."
+    columns:
+      - name: summons_number
+        description: '{{ doc("summons_number") }}'
+      - name: registration_state
+        description: '{{ doc("registration_state") }}'
+      - name: plate_type
+        description: '{{ doc("plate_type") }}'
+      - name: issue_date
+        description: '{{ doc("issue_date") }}'
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: vehicle_body_type
+        description: '{{ doc("vehicle_body_type") }}'
+      - name: vehicle_make
+        description: '{{ doc("vehicle_make") }}'
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: vehicle_expiration_date
+        description: '{{ doc("vehicle_expiration_date") }}'
+      - name: violation_location
+        description: '{{ doc("violation_location") }}'
+      - name: violation_precinct
+        description: '{{ doc("violation_precinct") }}'
+      - name: issuer_precinct
+        description: '{{ doc("issuer_precinct") }}'
+      - name: issuer_code
+        description: '{{ doc("issuer_code") }}'
+      - name: issuer_command
+        description: '{{ doc("issuer_command") }}'
+      - name: issuer_squad
+        description: '{{ doc("issuer_squad") }}'
+      - name: violation_time
+        description: '{{ doc("violation_time") }}'
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: violation_legal_code
+        description: '{{ doc("violation_legal_code") }}'
+      - name: vehicle_color
+        description: '{{ doc("vehicle_color") }}'
+      - name: vehicle_year
+        description: '{{ doc("vehicle_year") }}'
+      - name: is_manhattan_96th_st_below
+        description: '{{ doc("is_manhattan_96th_st_below") }}'
+
+  - name: silver_violation_tickets
+    description: "Consolidated information on parking violations, enriched with associated fee details."
+    columns:
+      - name: summons_number
+        description: '{{ doc("summons_number") }}'
+      - name: issue_date
+        description: '{{ doc("issue_date") }}'
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: is_manhattan_96th_st_below
+        description: '{{ doc("is_manhattan_96th_st_below") }}'
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: violation_location
+        description: '{{ doc("violation_location") }}'
+      - name: violation_precinct
+        description: '{{ doc("violation_precinct") }}'
+      - name: issuer_precinct
+        description: '{{ doc("issuer_precinct") }}'
+      - name: issuer_code
+        description: '{{ doc("issuer_code") }}'
+      - name: issuer_command
+        description: '{{ doc("issuer_command") }}'
+      - name: issuer_squad
+        description: '{{ doc("issuer_squad") }}'
+      - name: violation_time
+        description: '{{ doc("violation_time") }}'
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: violation_legal_code
+        description: '{{ doc("violation_legal_code") }}'
+
+  - name: silver_violation_vehicles
+    description: "Details of the vehicles involved in parking violations."
+    columns:
+      - name: summons_number
+        description: '{{ doc("summons_number") }}'
+      - name: registration_state
+        description: '{{ doc("registration_state") }}'
+      - name: plate_type
+        description: '{{ doc("plate_type") }}'
+      - name: vehicle_body_type
+        description: '{{ doc("vehicle_body_type") }}'
+      - name: vehicle_make
+        description: '{{ doc("vehicle_make") }}'
+      - name: vehicle_expiration_date
+        description: '{{ doc("vehicle_expiration_date") }}'
+      - name: vehicle_color
+        description: '{{ doc("vehicle_color") }}'
+      - name: vehicle_year
+        description: '{{ doc("vehicle_year") }}'
+
+  - name: silver_valid_violation_tickets
+    description: "Filtered set of violation tickets issued up to August 2023, excluding invalid precincts."
+    columns:
+      - name: summons_number
+        description: '{{ doc("summons_number") }}'
+      - name: issue_date
+        description: '{{ doc("issue_date") }}'
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: is_manhattan_96th_st_below
+        description: '{{ doc("is_manhattan_96th_st_below") }}'
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: violation_location
+        description: '{{ doc("violation_location") }}'
+      - name: violation_precinct
+        description: '{{ doc("violation_precinct") }}'
+      - name: issuer_precinct
+        description: '{{ doc("issuer_precinct") }}'
+      - name: issuer_code
+        description: '{{ doc("issuer_code") }}'
+      - name: issuer_command
+        description: '{{ doc("issuer_command") }}'
+      - name: issuer_squad
+        description: '{{ doc("issuer_squad") }}'
+      - name: violation_time
+        description: '{{ doc("violation_time") }}'
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: violation_legal_code
+        description: '{{ doc("violation_legal_code") }}'
+      - name: fee_usd
+        description: '{{ doc("fee_usd") }}'
+
+  - name: gold_2023_agency_fee_metrics
+    description: "Aggregated metrics representing ticket counts and fee statistics by issuing agency."
+    columns:
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: total_ticket_fees_usd
+        description: '{{ doc("total_ticket_fees_usd") }}'
+      - name: average_fee_usd
+        description: '{{ doc("average_fee_usd") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
+
+  - name: gold_2023_county_violations_day_of_week_heatmap
+    description: "Weekly ticket counts by precinct, including totals for each day and cumulative weekly totals."
+    columns:
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: sunday
+        description: "Count of tickets issued on Sunday."
+      - name: monday
+        description: "Count of tickets issued on Monday."
+      - name: tuesday
+        description: "Count of tickets issued on Tuesday."
+      - name: wednesday
+        description: "Count of tickets issued on Wednesday."
+      - name: thursday
+        description: "Count of tickets issued on Thursday."
+      - name: friday
+        description: "Count of tickets issued on Friday."
+      - name: saturday
+        description: "Count of tickets issued on Saturday."
+      - name: total_tickets
+        description: '{{ doc("total_tickets") }}'
+
+  - name: gold_2023_ticket_counts_year_month
+    description: "Monthly comparison of ticket counts, including month-over-month absolute and percentage changes."
+    columns:
+      - name: year_month
+        description: '{{ doc("year_month") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
+      - name: previous_month_ticket_count
+        description: '{{ doc("previous_month_ticket_count") }}'
+      - name: monthly_change
+        description: '{{ doc("monthly_change") }}'
+      - name: percent_change
+        description: '{{ doc("percent_change") }}'
+
+  - name: gold_2023_ticket_counts_year_week
+    description: "Weekly comparison of ticket counts, including week-over-week absolute and percentage changes."
+    columns:
+      - name: year_week
+        description: '{{ doc("year_week") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
+      - name: previous_week_ticket_count
+        description: '{{ doc("previous_week_ticket_count") }}'
+      - name: weekly_change
+        description: "The change in ticket counts compared to the previous week."
+      - name: percent_change
+        description: '{{ doc("percent_change") }}'
+  
+  - name: gold_2023_violations_day_of_week_heatmap
+    description: "Weekly ticket counts grouped by violation code and definition, including daily counts and a weekly total."
+    columns:
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: violation_definition
+        description: '{{ doc("violation_definition") }}'
+      - name: sunday
+        description: "Count of tickets issued on Sunday."
+      - name: monday
+        description: "Count of tickets issued on Monday."
+      - name: tuesday
+        description: "Count of tickets issued on Tuesday."
+      - name: wednesday
+        description: "Count of tickets issued on Wednesday."
+      - name: thursday
+        description: "Count of tickets issued on Thursday."
+      - name: friday
+        description: "Count of tickets issued on Friday."
+      - name: saturday
+        description: "Count of tickets issued on Saturday."
+      - name: total_tickets
+        description: "The total tickets."
+  
+  - name: gold_2023_weekly_violations_day_of_week_heatmap
+    description: "Weekly ticket counts by day of the week for the past year."
+    columns:
+      - name: year_week
+        description: '{{ doc("year_week") }}'
+      - name: sunday
+        description: "Count of tickets issued on Sunday."
+      - name: monday
+        description: "Count of tickets issued on Monday."
+      - name: tuesday
+        description: "Count of tickets issued on Tuesday."
+      - name: wednesday
+        description: "Count of tickets issued on Wednesday."
+      - name: thursday
+        description: "Count of tickets issued on Thursday."
+      - name: friday
+        description: "Count of tickets issued on Friday."
+      - name: saturday
+        description: "Count of tickets issued on Saturday."
+    
+  - name: gold_latest_tickets_90_days
+    description: "Detailed ticket-level data for violations issued within the last 90 days."
+    columns:
+      - name: summons_number
+        description: '{{ doc("summons_number") }}'
+      - name: issue_date
+        description: '{{ doc("issue_date") }}'
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: is_manhattan_96th_st_below
+        description: '{{ doc("is_manhattan_96th_st_below") }}'
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: violation_location
+        description: '{{ doc("violation_location") }}'
+      - name: violation_precinct
+        description: '{{ doc("violation_precinct") }}'
+      - name: issuer_precinct
+        description: '{{ doc("issuer_precinct") }}'
+      - name: issuer_code
+        description: '{{ doc("issuer_code") }}'
+      - name: issuer_command
+        description: '{{ doc("issuer_command") }}'
+      - name: issuer_squad
+        description: '{{ doc("issuer_squad") }}'
+      - name: violation_time
+        description: '{{ doc("violation_time") }}'
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: fee_usd
+        description: '{{ doc("fee_usd") }}'
+
+  - name: gold_precinct_ticket_fee_sum_90_days
+    description: "Aggregated total ticket fees per issuer precinct over the past 90 days."
+    columns:
+      - name: issuer_precinct
+        description: '{{ doc("issuer_precinct") }}'
+      - name: total_ticket_fees_usd
+        description: '{{ doc("total_ticket_fees_usd") }}'
+
+  - name: gold_tickets_by_agency_90_days
+    description: "Count of tickets grouped by issuing agency for the past 90 days."
+    columns:
+      - name: issuing_agency
+        description: '{{ doc("issuing_agency") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
+
+  - name: gold_tickets_by_county_90_days
+    description: "Aggregated ticket counts by precinct, specific violation county, and county over the past 90 days."
+    columns:
+      - name: violation_county
+        description: '{{ doc("violation_county") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
+
+  - name: gold_tickets_by_violation_90_days
+    description: "Count of tickets grouped by violation code and their definitions over the past 90 days."
+    columns:
+      - name: violation_code
+        description: '{{ doc("violation_code") }}'
+      - name: violation_definition
+        description: '{{ doc("violation_definition") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
+
+  - name: gold_tickets_by_vehicle_90_days
+    description: "Ticket counts grouped by vehicle make, plate type, and registration state for the past 90 days."
+    columns:
+      - name: vehicle_make
+        description: '{{ doc("vehicle_make") }}'
+      - name: plate_type
+        description: '{{ doc("plate_type") }}'
+      - name: registration_state
+        description: '{{ doc("registration_state") }}'
+      - name: ticket_count
+        description: '{{ doc("ticket_count") }}'
