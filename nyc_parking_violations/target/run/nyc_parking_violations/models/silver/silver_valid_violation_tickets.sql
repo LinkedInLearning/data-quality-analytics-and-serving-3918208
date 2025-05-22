@@ -25,7 +25,7 @@
 FROM
     "nyc_parking_violations"."main"."silver_violation_tickets"
 WHERE
-    -- violation_precinct != 0 AND
+    violation_precinct != 0 AND
     EXTRACT(year FROM issue_date) == 2023 AND
     EXTRACT(month FROM issue_date) <= 8
     );
