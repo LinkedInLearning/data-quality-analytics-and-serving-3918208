@@ -922,7 +922,7 @@ We need to make the following changes in our fix:
 Finally, here are my query to review `issuing_agency`:
 
 ```sql
-SELECT DISTINCT
+SELECT
     issuing_agency,
     COUNT(issuing_agency) AS ticket_count
 FROM
