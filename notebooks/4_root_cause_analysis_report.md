@@ -278,4 +278,23 @@ WHERE
 ```
 
 ## **Stakeholder Communication**
-Write your notes here...
+
+**Stakeholder Communication**
+
+SBAR Communication: Data Quality Issue in NYC Parking Violation Report
+
+*Situation*
+- add your writing here...
+
+*Background*
+- add your writing here...
+
+*Assessment*
+- add your writing here...
+
+*Recommendation*
+- *Immediate & Medium-Term Actions (Completed):*
+  add your writing here...
+
+- *Long-Term Actions:*
+  add your writing here...
