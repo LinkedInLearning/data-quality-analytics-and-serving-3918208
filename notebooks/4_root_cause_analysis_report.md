@@ -284,17 +284,27 @@ WHERE
 SBAR Communication: Data Quality Issue in NYC Parking Violation Report
 
 *Situation*
-- add your writing here...
+- Significant discrepancies in NYC Parking Violation Report metrics.
+- Revenue dropped drastically (~$1.4M → ~$805k).
+- Missing critical data (`Precinct 0`, `PHTO SCHOOL ZN SPEED VIOLATION`).
 
 *Background*
-- add your writing here...
+- Issue tied to recent data pipeline transformation.
+- `Precinct 0` incorrectly excluded, impacting major revenue driver.
+- Inconsistent county spellings (`Kings`, `Queens`).
+- Unexpected agency code (`XYZ`).
 
 *Assessment*
-- add your writing here...
+- Revenue drop primarily due to exclusion of `Precinct 0`.
+- "PHTO SCHOOL ZN SPEED VIOLATION" disappearance affecting counts, especially Sundays.
+- County name variations indicate upstream data quality issues.
+- Agency `XYZ` likely placeholder or erroneous entry.
 
 *Recommendation*
 - *Immediate & Medium-Term Actions (Completed):*
-  add your writing here...
+  - Reverted exclusion of `Precinct 0`.
+  - Implemented data normalization for county names.
+  - DQ checks established for agency `XYZ`, county consistency, and precinct presence to provide warnings so we no longer have a silent failure.
 
 - *Long-Term Actions:*
-  add your writing here...
+  - Engage upstream teams to improve data collection and validate agency `XYZ` authenticity.
