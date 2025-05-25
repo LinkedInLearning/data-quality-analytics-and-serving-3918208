@@ -88,7 +88,31 @@ Areas of Interest Worth Exploring:
     - Known agency `V` disappeared, and a new placeholder agency `XYZ` emerged.
 
 ## **Data Profiling**
-Write your notes here...
+
+All Gold metrics of interest are sourced from `silver_valid_violation_tickets` and `silver_parking_violation_codes`, thus those two tables and columns will be our starting point.
+
+- `silver_valid_violation_tickets`
+    - `violation_precinct`
+    - `fee_usd`
+    - `violation_code`
+    - `violation_county`
+    - `issuing_agency`
+
+- `silver_parking_violation_codes`
+    - `violation_code`
+    - `definition`
+
+We also want to explore the following pipeline chains:
+
+- `silver_valid_violation_tickets` -> `silver_violation_tickets`
+
+- `silver_violation_tickets` -> `silver_parking_violation_codes`
+
+- `silver_violation_tickets` -> `silver_parking_violations`
+
+- `silver_parking_violation_codes` -> `bronze_parking_violation_codes` (ingestion layer)
+
+- `silver_parking_violations` -> `bronze_parking_violations` (ingestion layer)
 
 ## **Downstream Pipeline Investigation**
 Write your notes here...
