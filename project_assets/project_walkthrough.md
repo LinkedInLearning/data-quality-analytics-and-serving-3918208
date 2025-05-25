@@ -974,7 +974,7 @@ This now completes our data profiling step!
 
 **🛑 STOP HERE AND SYNTHESIZE YOUR FINDINGS TO `Data Profiling` IN `4_root_cause_analysis_report.md`.**
 
-### 06_04_exercise_data_profiling_queries_part_2
+### 06_05_exercise_data_profiling_queries_part_2
 
 Below is what I added to the RCA report under what we currently have in:
 ```md
