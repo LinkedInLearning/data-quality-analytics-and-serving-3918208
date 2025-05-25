@@ -16,5 +16,8 @@ SELECT
 FROM
     "nyc_parking_violations"."main"."silver_violation_tickets"
 WHERE
+    -- Meeting on August 27th, 2023 noted that we will try removing "precinct 0"
+    -- until we can get a better data label for this value.
+    violation_precinct != 0 AND
     EXTRACT(year FROM issue_date) == 2023 AND
     EXTRACT(month FROM issue_date) <= 8
