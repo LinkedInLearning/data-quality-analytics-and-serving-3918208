@@ -173,7 +173,23 @@ Distinct agency codes and ticket counts reveal a suspicious placeholder value:
 - **`issuing_agency`**: Agency `XYZ` suspected to be an erroneous placeholder value, requiring stakeholder validation.
 
 ## **Downstream Pipeline Investigation**
-Write your notes here...
+```sql
+WHERE
+    -- Meeting on August 27th, 2023 noted that we will try removing "precinct 0"
+    -- until we can get a better data label for this value.
+    --
+    -- UPDATE September 1st, 2023: The "precinct 0" logic unexpectedly caused
+    -- massive issues for the NYC Parking Violation Report as this precinct
+    -- turns out not to be bad data but tied to `PHTO SCHOOL ZN SPEED VIOLATION`
+    -- which is one of the largest drivers of ticket revenue.
+    --
+    -- We will comment out `violation_precinct != 0 AND` for now until we are
+    -- able to implement a long-term solution and then remove.
+    --
+    -- violation_precinct != 0 AND
+    EXTRACT(year FROM issue_date) == 2023 AND
+    EXTRACT(month FROM issue_date) <= 8
+```
 
 **Implement DQ Fix**
 Write your notes here...
