@@ -917,8 +917,6 @@ We need to make the following changes in our fix:
 
 [`Queens`, `QNS`] -> `Qns`
 
-[`Bronx`, `BX`] -> `Bx`
-
 ### 06_04_exercise_data_profiling_queries_part_2
 
 Finally, here are my query to review `issuing_agency`:
