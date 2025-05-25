@@ -114,6 +114,64 @@ We also want to explore the following pipeline chains:
 
 - `silver_parking_violations` -> `bronze_parking_violations` (ingestion layer)
 
+*Comparing Key Metrics Across Pipeline Stages*
+
+To efficiently profile data and identify discrepancies, I combined critical metrics into unified tables. These tables help us quickly pinpoint where data issues or logical transformations occur.
+
+Initial Pipeline Comparison:
+
+- The significant reduction in unique values and narrowing of the date range in the `silver_valid_violation_tickets` table indicates intentional filtering or validation logic occurring between `silver_violation_tickets` and `silver_valid_violation_tickets`.
+
+- However, the reduced counts for `violation_precinct`, `violation_code`, `violation_county`, and `issuing_agency` raise concerns about potential unintended data exclusions or transformation errors.
+
+*Filtered Pipeline Comparison (2023 data through August)*:
+
+After applying the proper date filters (`year = 2023, month ≤ 8`):
+
+- Filtering improved consistency in metrics, but discrepancies in `violation_precinct`, `violation_county`, and `issuing_agency` persist, confirming these as primary areas to investigate further.
+
+- Revenue (`fee_usd`) will not be explored at this stage due to multiple potential influencing factors.
+
+*Detailed Checks of Problematic Columns*
+
+`violation_precinct`:
+
+- Precinct `0` is missing from the validated silver dataset, clearly identifying an issue in the SQL or filtering logic during the transformation.
+
+`violation_county`:
+
+- Recommended data normalization for immediate fix to match original report baseline:
+    - `["King's", "KINGS"]` → `"Kings"`
+    - `["Queens", "QNS"]` → `"Qns"`
+
+- NOTE:
+    - According to the [NYC official website](https://portal.311.nyc.gov/article/?kanumber=KA-02877) there are only 5 boroughs and matching counties; which means we also just found a data quality issue in the original report.
+
+    - Given our main task was to align the data to the original report, we will instead match the data to the report to get back to baseline, but I suggest to fix this later.
+
+`issuing_agency`:
+
+Distinct agency codes and ticket counts reveal a suspicious placeholder value:
+
+- Agency `XYZ` appears to be a data quality anomaly:
+
+  - Not visible in the original clean data visualizations.
+
+  - Uses a three-character code, while all other agencies use a single-character code.
+
+- Recommendation to explicitly flag agency `XYZ` to get back close to baseline report, but further validation is needed from the upstream data providers.
+
+    - This will unfortunately not be able to be solved in the report because there is no way to know if `XYZ` is valid, and if valid, if it's replacing existing values.
+
+    - Thus this will require downstream stakeholder communication of a limitation, how widespread the impact is, and escalation to the upstream data providers.
+
+*Summary of Data Profiling Findings*:
+- **`violation_precinct`**: Precinct `0` data missing from final silver stage indicates a business logic/filter issue.
+
+- **`violation_county`**: Multiple inconsistent spellings clearly indicate upstream or ingestion data quality issues.
+
+- **`issuing_agency`**: Agency `XYZ` suspected to be an erroneous placeholder value, requiring stakeholder validation.
+
 ## **Downstream Pipeline Investigation**
 Write your notes here...
 
