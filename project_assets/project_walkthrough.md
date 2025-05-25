@@ -931,8 +931,7 @@ FROM
     silver_violation_tickets
 WHERE
     EXTRACT(year FROM issue_date) == 2023 AND
-    EXTRACT(month FROM issue_date) <= 8 -- AND
-    -- issuer_precinct = 0
+    EXTRACT(month FROM issue_date) <= 8
 GROUP BY
     issuing_agency
 ORDER BY
