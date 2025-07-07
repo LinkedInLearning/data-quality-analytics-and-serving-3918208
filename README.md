@@ -1,6 +1,12 @@
 # Data Quality: Analytics and Serving
 This is the repository for the LinkedIn Learning course `Data Quality: Analytics and Serving`. The full course is available from [LinkedIn Learning][lil-course-url].
 
+![lil-thumbnail-url]
+
+# Course Description
+
+Dive into the practical aspects of data quality in this hands-on course that equips you with hands-on coding skills in a sandbox environment. Data engineer Mark Freeman shows you how to identify, analyze, and resolve data quality issues using robust approaches like root cause analysis and chaos engineering. Discover how to use SQL queries and DBT tests to safeguard data pipelines and ensure the reliability of your datasets. Learn about downstream pipeline investigations and uncover the business logic that affects data quality. Find out how to apply SBAR strategies to convey your insights to stakeholders. Whether you're a data scientist, analyst, or simply enthusiastic about improving data workflows, this course helps you unlock your potential to solve complex data quality problems while making a significant impact in data-driven environments.
+
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
@@ -20,15 +26,15 @@ To resolve this issue:
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
 
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+ ## Instructor
+
+Mark Freeman
+
+Data Engineer, Tech Lead
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+[lil-course-url]: https://www.linkedin.com/learning/data-quality-analytics-and-serving
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQFkEkRi7SBumg/learning-public-crop_675_1200/B4EZdqJ8f8H0AY-/0/1749832682307?e=2147483647&v=beta&t=zyoAtOlyXsvHFc8iCMQzo3vgH868cvL7wlEPpUHGExs
 
